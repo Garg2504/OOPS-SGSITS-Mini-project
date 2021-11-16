@@ -1,3 +1,4 @@
+
 /**
  * Created by Adrian Adewunmi on 16/11/21.
  * Version 1.0
@@ -48,9 +49,13 @@ class Student {
         return amountPaidTuitionFees;
     }
 
-    public double updateTuitionFees(){
-        tuitionFees = getTuitionFees();
-        amountPaidTuitionFees = getAmountPaidTuitionFees();
-        return tuitionFees = tuitionFees - amountPaidTuitionFees;
+    public void updateTuitionFees(){
+        try {
+            tuitionFees = getTuitionFees();
+            amountPaidTuitionFees = getAmountPaidTuitionFees();
+            tuitionFees = tuitionFees - amountPaidTuitionFees;
+        }catch (ArithmeticException e){
+            e.printStackTrace();
+        }
     }
 }
