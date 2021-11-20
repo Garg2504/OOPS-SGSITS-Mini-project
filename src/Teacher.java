@@ -8,7 +8,7 @@
 public class Teacher {
     private final int id;
     private final String name;
-    private String salary;
+    private double salary;
 
     /**
      * Constructor for the Teacher class
@@ -17,7 +17,7 @@ public class Teacher {
      * @param salary: The teacher's salary
      */
 
-    public Teacher(int id, String name, String salary) {
+    public Teacher(int id, String name, double salary) {
         this.id = id;
         this.name = name;
         this.salary = salary;
@@ -40,14 +40,14 @@ public class Teacher {
      * Gets the teacher's salary
      * @return: The teacher's salary
      */
-    public String getSalary() {
+    public double getSalary() {
         return salary;
     }
     /**
      * Sets the teacher's salary
      * @param salary: The teacher's salary
      */
-    public void setSalary(String salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 }

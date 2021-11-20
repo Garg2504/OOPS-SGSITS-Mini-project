@@ -72,7 +72,7 @@ class Student {
         this.amountPaidTuitionFees = amountPaidTuitionFees;
     }
     /**
-     * This method the balance of tuition fees amount paid by student
+     * This method gets the balance of tuition fees amount paid by student
      * @return: Student's amount paid tuition fees
      */
     public double getAmountPaidTuitionFees() {
