@@ -3,13 +3,14 @@ import java.util.ArrayList;
 /**
  * Created by Adrian Adewunmi on 18/11/21.
  * Version: 1.0
- * College Class:
+ * College Class: This class is used to keep track of all the students, teachers and
+ * college funds
  */
 
 public class College {
-    private String collegeName;
-    private ArrayList<Student> students;
-    private ArrayList<Teacher> teachers;
+    private final String collegeName;
+    private final ArrayList<Student> students;
+    private final ArrayList<Teacher> teachers;
     private double totalMoneyEarned;
     private double totalMoneySpent;
     private double totalMoneyLeft;
@@ -26,6 +27,7 @@ public class College {
         teachers = new ArrayList<>();
         totalMoneyEarned = 0;
         totalMoneySpent = 0;
+        totalMoneyLeft = 0;
     }
 
     /**
@@ -109,5 +111,12 @@ public class College {
      */
     public void calculateTotalMoneyLeft() {
         totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
+    }
+    /**
+     * Gets total money left
+     * @return: Total money left
+     */
+    public double getTotalMoneyLeft() {
+        return totalMoneyLeft;
     }
 }
