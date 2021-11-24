@@ -1,4 +1,3 @@
-
 /**
  * Created by Adrian Adewunmi on 16/11/21.
  * Version 1.0
@@ -6,7 +5,7 @@
  */
 
 class Student {
-    private final int id;
+    private final String id;
     private final String name;
     private final String courseName;
     private final String courseCode;
@@ -22,7 +21,7 @@ class Student {
      * @param tuitionFees: Student's tuition fees
      */
 
-    public Student(int id, String name, String courseName, String courseCode, double tuitionFees) {
+    public Student(String id, String name, String courseName, String courseCode, double tuitionFees) {
         this.id = id;
         this.name = name;
         this.courseName = courseName;
@@ -34,7 +33,7 @@ class Student {
      * This method returns the student's ID
      * @return: Student's ID
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
     /**
@@ -90,5 +89,19 @@ class Student {
         }catch (ArithmeticException e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * This method returns all the student's details
+     * @return: Student's details
+     */
+    @Override
+    public String toString() {
+        return "Student ID: " + id +
+                ", Name: " + name +
+                ", Course Name: " + courseName +
+                ", Course Code: " + courseCode +
+                ", Tuition Fees: £ " + tuitionFees +
+                ", Amount of Tuition Fees Paid: £ " + amountPaidTuitionFees;
     }
 }

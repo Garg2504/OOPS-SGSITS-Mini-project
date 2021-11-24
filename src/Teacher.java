@@ -6,7 +6,7 @@
  */
 
 public class Teacher {
-    private final int id;
+    private final String id;
     private final String name;
     private double salary;
 
@@ -17,7 +17,7 @@ public class Teacher {
      * @param salary: The teacher's salary
      */
 
-    public Teacher(int id, String name, double salary) {
+    public Teacher(String id, String name, double salary) {
         this.id = id;
         this.name = name;
         this.salary = salary;
@@ -26,7 +26,7 @@ public class Teacher {
      * Gets the teacher's id
      * @return: The teacher's id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
     /**
@@ -49,5 +49,16 @@ public class Teacher {
      */
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    /**
+     * Returns the teacher's information
+     * @return: The teacher's information
+     */
+    @Override
+    public String toString() {
+        return "Teacher ID: " + id +
+                ", Name: " + name +
+                ", Salary: £" + salary;
     }
 }
