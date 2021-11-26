@@ -91,12 +91,13 @@ public class College {
      * Finds a teacher by ID
      * @param teacherID: The teacher ID
      */
-    public void findTeacher(String teacherID) {
+    public String findTeacher(String teacherID) {
         for (Teacher teacher : teachers) {
             if (teacher.getId().equals(teacherID)) {
                 System.out.println(teacher.toString());
             }
         }
+        return teachers.toString();
     }
 
     /**
@@ -104,12 +105,17 @@ public class College {
      */
     ArrayList<Teacher> deletedTeacherList = new ArrayList<>();
     public void removeTeacher(String teacherID) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getId().equals(teacherID)) {
-                deletedTeacherList.add(teacher);
+        try{
+            for (Teacher teacher : teachers) {
+                if (teacher.getId().equals(teacherID)) {
+                    deletedTeacherList.add(teacher);
+                }
             }
+            teachers.removeAll(deletedTeacherList);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("No teacher with that ID");
         }
-        teachers.removeAll(deletedTeacherList);
     }
     /**
      * Increases teacher salary
@@ -119,11 +125,18 @@ public class College {
      */
     public double increaseTeacherSalary(String teacherID, double salary) {
         double newSalary = 0;
-        for (Teacher teacher : teachers) {
-            if (teacher.getId().equals(teacherID)) {
-                teacher.setSalary(teacher.getSalary() + salary);
-                newSalary = teacher.getSalary();
+        try{
+
+            for (Teacher teacher : teachers) {
+                if (teacher.getId().equals(teacherID)) {
+                    teacher.setSalary(teacher.getSalary() + salary);
+                    newSalary = teacher.getSalary();
+                }
             }
+            System.out.println("New salary is " + newSalary);
+        }catch (ArithmeticException e){
+            e.printStackTrace();
+            System.out.println("Salary cannot be negative");
         }
         return newSalary;
     }
@@ -133,8 +146,13 @@ public class College {
      * @return totalMoneyEarned
      */
     public double calculateTotalMoneyEarned() {
-        for (Student student : students) {
-            totalMoneyEarned += student.getAmountPaidTuitionFees();
+        try{
+            for (Student student : students) {
+                totalMoneyEarned += student.getAmountPaidTuitionFees();
+            }
+        }catch (ArithmeticException e){
+            e.printStackTrace();
+            System.out.println("Total money earned cannot be negative");
         }
         return totalMoneyEarned;
     }
@@ -143,8 +161,13 @@ public class College {
      * @return: Total money spent
      */
     public double calculateTotalMoneySpent() {
-        for (Teacher teacher : teachers) {
-            totalMoneySpent += teacher.getSalary();
+        try{
+            for (Teacher teacher : teachers) {
+                totalMoneySpent += teacher.getSalary();
+            }
+        }catch (ArithmeticException e){
+            e.printStackTrace();
+            System.out.println("Total money spent cannot be negative");
         }
         return totalMoneySpent;
     }
@@ -152,8 +175,14 @@ public class College {
      * Calculates the total money left
      * @return: Total money left
      */
-    public void calculateTotalMoneyLeft() {
+    public double calculateTotalMoneyLeft() {
+        try{
         totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
+        }catch (ArithmeticException e){
+            e.printStackTrace();
+            System.out.println("Total money left cannot be negative");
+        }
+        return totalMoneyLeft;
     }
     /**
      * Gets total money left
@@ -161,5 +190,13 @@ public class College {
      */
     public double getTotalMoneyLeft() {
         return totalMoneyLeft;
+    }
+    /**
+     * Print the list of teachers
+     */
+    public void printListOfTeachers() {
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher.toString());
+        }
     }
 }
