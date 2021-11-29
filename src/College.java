@@ -91,13 +91,17 @@ public class College {
      * Finds a teacher by ID
      * @param teacherID: The teacher ID
      */
-    public String findTeacher(String teacherID) {
-        for (Teacher teacher : teachers) {
-            if (teacher.getId().equals(teacherID)) {
-                System.out.println(teacher.toString());
+    public void findTeacher(String teacherID) {
+        try{
+            for (Teacher teacher : teachers) {
+                if (teacher.getId().equals(teacherID)) {
+                    System.out.println(teacher.toString());
+                }
             }
+            System.out.println("No teacher with that ID");
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        return teachers.toString();
     }
 
     /**
@@ -109,24 +113,24 @@ public class College {
             for (Teacher teacher : teachers) {
                 if (teacher.getId().equals(teacherID)) {
                     deletedTeacherList.add(teacher);
+                    teachers.removeAll(deletedTeacherList);
+                    System.out.println("Teacher removed!");
                 }
             }
-            teachers.removeAll(deletedTeacherList);
+            System.out.println("No teacher with that ID");
         }catch (Exception e){
             e.printStackTrace();
-            System.out.println("No teacher with that ID");
         }
     }
     /**
      * Increases teacher salary
-     * @param teacherID: The teacher ID
-     * @param salary: The salary to be added
+     * @param teacherID : The teacher ID
+     * @param salary : The salary to be added
      * @return: The new salary
      */
-    public double increaseTeacherSalary(String teacherID, double salary) {
+    public void increaseTeacherSalary(String teacherID, double salary) {
         double newSalary = 0;
         try{
-
             for (Teacher teacher : teachers) {
                 if (teacher.getId().equals(teacherID)) {
                     teacher.setSalary(teacher.getSalary() + salary);
@@ -136,9 +140,7 @@ public class College {
             System.out.println("New salary is " + newSalary);
         }catch (ArithmeticException e){
             e.printStackTrace();
-            System.out.println("Salary cannot be negative");
         }
-        return newSalary;
     }
 
     /**
@@ -151,8 +153,8 @@ public class College {
                 totalMoneyEarned += student.getAmountPaidTuitionFees();
             }
         }catch (ArithmeticException e){
-            e.printStackTrace();
             System.out.println("Total money earned cannot be negative");
+            e.printStackTrace();
         }
         return totalMoneyEarned;
     }
@@ -166,8 +168,8 @@ public class College {
                 totalMoneySpent += teacher.getSalary();
             }
         }catch (ArithmeticException e){
-            e.printStackTrace();
             System.out.println("Total money spent cannot be negative");
+            e.printStackTrace();
         }
         return totalMoneySpent;
     }
@@ -179,8 +181,8 @@ public class College {
         try{
         totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
         }catch (ArithmeticException e){
-            e.printStackTrace();
             System.out.println("Total money left cannot be negative");
+            e.printStackTrace();
         }
         return totalMoneyLeft;
     }
