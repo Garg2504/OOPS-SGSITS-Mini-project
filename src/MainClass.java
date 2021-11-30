@@ -77,26 +77,23 @@ public class MainClass {
 
     private static void increaseSalary(College newCollege) {
         System.out.println("=== Increase Teachers Salary ===");
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner;
         String teacherID;
         char y = 'y';
         do{
             System.out.print("\nEnter teacher id: ");
             scanner = new Scanner(System.in);
-            scanner = new Scanner(System.in);
             teacherID = scanner.nextLine();
             newCollege.findTeacher(teacherID);
-            System.out.print("\nFind another teacher? (y/n): \n");
-            scanner = new Scanner(System.in);
-            y = scanner.next().charAt(0);
-        } while(y == 'y');
-        if(y == 'n'){
             System.out.print("Enter the amount to increase salary: ");
             scanner = new Scanner(System.in);
             double increase = scanner.nextDouble();
             newCollege.increaseTeacherSalary(teacherID, increase);
             System.out.println("\nSalary increased successfully");
-        }
+            System.out.print("\nFind another teacher? (y/n): \n");
+            scanner = new Scanner(System.in);
+            y = scanner.next().charAt(0);
+        } while(y == 'y');
     }
 
     private static void removeTeacher(College newCollege) {
