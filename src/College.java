@@ -91,56 +91,49 @@ public class College {
      * Finds a teacher by ID
      * @param teacherID: The teacher ID
      */
-    public void findTeacher(String teacherID) {
-        try{
-            for (Teacher teacher : teachers) {
-                if (teacher.getId().equals(teacherID)) {
-                    System.out.println(teacher.toString());
-                }
+    public boolean findTeacher(String teacherID) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getId().equals(teacherID)) {
+                return true;
             }
-            System.out.println("No teacher with that ID");
-        }catch (Exception e){
-            e.printStackTrace();
         }
+        return false;
     }
 
     /**
      * Deletes a teacher from the list of teachers
      */
     ArrayList<Teacher> deletedTeacherList = new ArrayList<>();
-    public void removeTeacher(String teacherID) {
-        try{
-            for (Teacher teacher : teachers) {
-                if (teacher.getId().equals(teacherID)) {
-                    deletedTeacherList.add(teacher);
-                    teachers.removeAll(deletedTeacherList);
-                    System.out.println("Teacher removed!");
-                }
+    public boolean removeTeacher(String teacherID) {
+        for (Teacher teacher : teachers) {
+            if (teacher.getId().equals(teacherID)) {
+                deletedTeacherList.add(teacher);
+                teachers.removeAll(deletedTeacherList);
+                return true;
             }
-            System.out.println("No teacher with that ID");
-        }catch (Exception e){
-            e.printStackTrace();
         }
+        return false;
     }
     /**
      * Increases teacher salary
      * @param teacherID : The teacher ID
-     * @param salary : The salary to be added
+     * @param salaryIncrease : The salary to be added
      * @return: The new salary
      */
-    public void increaseTeacherSalary(String teacherID, double salary) {
+    public double increaseTeacherSalary(String teacherID, double salaryIncrease) {
         double newSalary = 0;
-        try{
             for (Teacher teacher : teachers) {
                 if (teacher.getId().equals(teacherID)) {
-                    teacher.setSalary(teacher.getSalary() + salary);
-                    newSalary = teacher.getSalary();
+                    if (salaryIncrease > 0) {
+                        teacher.setSalary(teacher.getSalary() + salaryIncrease);
+                        newSalary = teacher.getSalary();
+                        System.out.println("Salary Increased Successfully!");
+                    }else {
+                        System.out.println("Salary increase cannot be negative");
+                    }
                 }
             }
-            System.out.println("New salary is " + newSalary);
-        }catch (ArithmeticException e){
-            e.printStackTrace();
-        }
+        return newSalary;
     }
 
     /**

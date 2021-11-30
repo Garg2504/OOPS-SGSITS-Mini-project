@@ -8,7 +8,6 @@ import java.util.Scanner;
  *
  */
 public class MainClass {
-    Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         int selectMainMenu;
         int selectSubMenu;
@@ -79,17 +78,19 @@ public class MainClass {
         System.out.println("=== Increase Teachers Salary ===");
         Scanner scanner;
         String teacherID;
-        char y = 'y';
+        char y;
         do{
             System.out.print("\nEnter teacher id: ");
             scanner = new Scanner(System.in);
             teacherID = scanner.nextLine();
-            newCollege.findTeacher(teacherID);
-            System.out.print("Enter the amount to increase salary: ");
-            scanner = new Scanner(System.in);
-            double increase = scanner.nextDouble();
-            newCollege.increaseTeacherSalary(teacherID, increase);
-            System.out.println("\nSalary increased successfully");
+            if (newCollege.findTeacher(teacherID)) {
+                System.out.print("Enter the amount to increase salary: ");
+                scanner = new Scanner(System.in);
+                double increase = scanner.nextDouble();
+                newCollege.increaseTeacherSalary(teacherID, increase);
+            }else {
+                System.out.println("Teacher not found");
+            }
             System.out.print("\nFind another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
@@ -98,12 +99,17 @@ public class MainClass {
 
     private static void removeTeacher(College newCollege) {
         System.out.println("\n=== Delete Teacher ===");
-        char y = 'y';
+        char y;
         do{
             System.out.print("\nEnter teacher id: ");
             Scanner scanner = new Scanner(System.in);
             String teacherID = scanner.nextLine();
-            newCollege.removeTeacher(teacherID);
+            if (newCollege.findTeacher(teacherID)) {
+                newCollege.removeTeacher(teacherID);
+                System.out.println("\nTeacher deleted successfully!");
+            }else {
+                System.out.println("Teacher not found");
+            }
             System.out.print("\nRemove another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
@@ -112,12 +118,19 @@ public class MainClass {
 
     private static void findTeacher(College newCollege){
         System.out.println("\n=== Find Teacher ===");
-        char y = 'y';
+        char y;
         do{
             System.out.print("\nEnter teacher id: ");
             Scanner scanner = new Scanner(System.in);
             String teacherID = scanner.nextLine();
-            newCollege.findTeacher(teacherID);
+            for (Teacher teacher: newCollege.getTeachers()) {
+                if (newCollege.findTeacher(teacherID)) {
+                    System.out.println("\nTeacher found");
+                    System.out.println("Teacher : " + teacher.toString());
+                }else {
+                    System.out.println("Teacher not found");
+                }
+            }
             System.out.print("\nFind another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
@@ -125,13 +138,12 @@ public class MainClass {
     }
 
     public static void addTeachers(College newCollege){
-        char y = 'y';
+        char y;
         System.out.println("=== Add Teacher ===");
         do{
             enterTeacherDetails(newCollege);
             System.out.print("\nAdd another teacher? (y/n): \n");
             Scanner scanner = new Scanner(System.in);
-            scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
         } while(y == 'y');
     }
@@ -145,8 +157,13 @@ public class MainClass {
         String name = scanner.nextLine();
         System.out.print("Enter the salary of the teacher: ");
         double salary = scanner.nextDouble();
-        Teacher newTeacher = new Teacher(teacherID, name, salary);
-        newCollege.addTeacher(newTeacher);
+        if ((salary > 0) && (salary < 1000000)) {
+            Teacher newTeacher = new Teacher(teacherID, name, salary);
+            newCollege.addTeacher(newTeacher);
+        }else {
+            System.out.println("Salary must be between £0.00 and £1000000.00\n"
+                    + "Please enter a valid salary");
+        }
     }
 
     public static void printAllTeachers(College newCollege){
