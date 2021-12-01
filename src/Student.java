@@ -81,14 +81,11 @@ class Student {
      * This method returns the student's balance tuition fees
      * @return: Student's balance tuition fees
      */
-    public void updateTuitionFees(){
-        try {
-            tuitionFees = getTuitionFees();
-            amountPaidTuitionFees = getAmountPaidTuitionFees();
-            tuitionFees = tuitionFees - amountPaidTuitionFees;
-        }catch (ArithmeticException e){
-            e.printStackTrace();
-        }
+    public double updateTuitionFees(){
+        tuitionFees = getTuitionFees();
+        amountPaidTuitionFees = getAmountPaidTuitionFees();
+        tuitionFees = tuitionFees - amountPaidTuitionFees;
+        return tuitionFees;
     }
 
     /**
