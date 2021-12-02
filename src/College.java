@@ -194,4 +194,13 @@ public class College {
             System.out.println(teacher.toString());
         }
     }
+
+    /**
+     * Print the list of students
+     */
+    public void printListOfStudents() {
+        for (Student student : students) {
+            System.out.println(student.toString());
+        }
+    }
 }

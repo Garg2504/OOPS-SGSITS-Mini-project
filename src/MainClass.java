@@ -57,7 +57,7 @@ public class MainClass {
                                 printAllTeachers(newCollege);
                                 break;
                             case 6:
-                                System.out.println("\n=== Exiting Teacher Menu ===");
+                                System.out.println("\n=== Exiting Teachers Menu ===");
                                 break;
                         }
                     }while(selectSubMenuTeacher != 6);
@@ -78,6 +78,7 @@ public class MainClass {
                         switch (selectSubMenuStudent){
                             case 1:
                                 System.out.println("\n=== Adding Student ===");
+                                addStudents(newCollege);
                                 break;
                             case 2:
                                 System.out.println("\n=== Finding Student ===");
@@ -95,7 +96,8 @@ public class MainClass {
                                 System.out.println("\n=== Printing All Students ===");
                                 break;
                             case 7:
-                                System.out.println("\n=== Exiting Teacher Menu ===");
+                                System.out.println("\n=== Exiting Students Menu ===");
+                                printAllStudents(newCollege);
                                 break;
                         }
                     }while(selectSubMenuStudent != 7);
@@ -108,6 +110,16 @@ public class MainClass {
                     break;
             }
         }while(selectMainMenu != 4);
+    }
+
+    private static void printAllStudents(College newCollege) {
+        System.out.println("\n=== Students List ===");
+        newCollege.printListOfStudents();
+        System.out.println("\n");
+    }
+
+    private static void addStudents(College newCollege) {
+        System.out.println("\n=== Adding Student ===");
     }
 
     private static void increaseSalary(College newCollege) {
