@@ -204,27 +204,29 @@ public class MainClass {
         System.out.println("=== Add Teacher ===");
         do{
             enterTeacherDetails(newCollege);
-            System.out.println("\nAdd another teacher? (y/n): \n");
+            System.out.println("\nAdd another teacher? (y/n): ");
             Scanner scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
         } while(y == 'y');
     }
 
     public static void enterTeacherDetails(College newCollege){
-        System.out.println("\nEnter teacher id: ");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("\nEnter teacher id: ");
         String teacherID = scanner.nextLine();
         System.out.println("Enter the name of the teacher: ");
-        scanner = new Scanner(System.in);
         String name = scanner.nextLine();
         System.out.println("Enter the salary of the teacher: ");
         double salary = scanner.nextDouble();
-        if ((salary > 0) && (salary < 1000000)) {
+        if ((!newCollege.findTeacher(teacherID)) && ((salary > 0) && (salary < 1000000))) {
             Teacher newTeacher = new Teacher(teacherID, name, salary);
             newCollege.addTeacher(newTeacher);
         }else {
-            System.out.println("Salary must be between £1.00 and £1000000.00\n"
-                    + "Please enter a valid salary");
+            System.out.println("*** INVALID INPUT *** \n" );
+            System.out.println("Teacher id already exists or Salary is invalid.");
+            System.out.println("Duplicate teacher id not allowed, " +
+                    "Salary must be between £1.00 and £1000000.00\n");
+            System.out.println("Duplicate teacher not added");
         }
     }
 
