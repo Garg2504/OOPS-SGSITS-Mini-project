@@ -98,7 +98,6 @@ class Student {
                 ", Name: " + name +
                 ", Course Name: " + courseName +
                 ", Course Code: " + courseCode +
-                ", Tuition Fees: £ " + tuitionFees +
-                ", Amount of Tuition Fees Paid: £ " + amountPaidTuitionFees;
+                ", Tuition Fees: £ " + tuitionFees;
     }
 }

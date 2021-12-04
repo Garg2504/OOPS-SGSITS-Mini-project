@@ -24,7 +24,7 @@ public class MainClass {
                     "2. Students Finance\n" +
                     "3. College Finance\n" +
                     "4. Exit");
-            System.out.print("\nSelect an option: ");
+            System.out.println("\nSelect an option: ");
             Scanner scannerMainMenu = new Scanner(System.in);
             selectMainMenu = scannerMainMenu.nextInt();
             switch (selectMainMenu){
@@ -37,7 +37,7 @@ public class MainClass {
                                 "4. Delete Teacher\n" +
                                 "5. Print All Teachers\n" +
                                 "6. Exit");
-                        System.out.print("\nSelect an option: ");
+                        System.out.println("\nSelect an option: ");
                         Scanner scannerSubMenuTeacher = new Scanner(System.in);
                         selectSubMenuTeacher = scannerSubMenuTeacher.nextInt();
                         switch (selectSubMenuTeacher){
@@ -72,12 +72,11 @@ public class MainClass {
                                 "5. Delete Student\n" +
                                 "6. Print All Students\n" +
                                 "7. Exit");
-                        System.out.print("\nSelect an option: ");
+                        System.out.println("\nSelect an option: ");
                         Scanner scannerSubMenuStudent = new Scanner(System.in);
                         selectSubMenuStudent = scannerSubMenuStudent.nextInt();
                         switch (selectSubMenuStudent){
                             case 1:
-                                System.out.println("\n=== Adding Student ===");
                                 addStudents(newCollege);
                                 break;
                             case 2:
@@ -94,10 +93,10 @@ public class MainClass {
                                 break;
                             case 6:
                                 System.out.println("\n=== Printing All Students ===");
+                                printAllStudents(newCollege);
                                 break;
                             case 7:
                                 System.out.println("\n=== Exiting Students Menu ===");
-                                printAllStudents(newCollege);
                                 break;
                         }
                     }while(selectSubMenuStudent != 7);
@@ -120,6 +119,24 @@ public class MainClass {
 
     private static void addStudents(College newCollege) {
         System.out.println("\n=== Adding Student ===");
+        char y;
+        do{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter student id: ");
+            String studentId = scanner.nextLine();
+            System.out.println("Enter student name: ");
+            String studentName = scanner.nextLine();
+            System.out.println("Enter course name: ");
+            String courseName = scanner.nextLine();
+            System.out.println("Enter course code: ");
+            String courseCode = scanner.nextLine();
+            System.out.println("Enter course fee: ");
+            double courseFee = scanner.nextDouble();
+            Student newStudent = new Student(studentId, studentName, courseName, courseCode, courseFee);
+            newCollege.addStudent(newStudent);
+            System.out.println("\nAdd another student? (y/n): ");
+            y = scanner.next().charAt(0);
+        }while(y == 'y');
     }
 
     private static void increaseSalary(College newCollege) {
@@ -128,18 +145,18 @@ public class MainClass {
         String teacherID;
         char y;
         do{
-            System.out.print("\nEnter teacher id: ");
+            System.out.println("\nEnter teacher id: ");
             scanner = new Scanner(System.in);
             teacherID = scanner.nextLine();
             if (newCollege.findTeacher(teacherID)) {
-                System.out.print("Enter the amount to increase salary: ");
+                System.out.println("Enter the amount to increase salary: ");
                 scanner = new Scanner(System.in);
                 double increase = scanner.nextDouble();
                 newCollege.increaseTeacherSalary(teacherID, increase);
             }else {
                 System.out.println("Teacher not found");
             }
-            System.out.print("\nFind another teacher? (y/n): \n");
+            System.out.println("\nFind another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
         } while(y == 'y');
@@ -149,7 +166,7 @@ public class MainClass {
         System.out.println("\n=== Delete Teacher ===");
         char y;
         do{
-            System.out.print("\nEnter teacher id: ");
+            System.out.println("\nEnter teacher id: ");
             Scanner scanner = new Scanner(System.in);
             String teacherID = scanner.nextLine();
             if (newCollege.findTeacher(teacherID)) {
@@ -158,7 +175,7 @@ public class MainClass {
             }else {
                 System.out.println("Teacher not found");
             }
-            System.out.print("\nRemove another teacher? (y/n): \n");
+            System.out.println("\nRemove another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
         } while(y == 'y');
@@ -168,7 +185,7 @@ public class MainClass {
         System.out.println("\n=== Find Teacher ===");
         char y;
         do{
-            System.out.print("\nEnter teacher id: ");
+            System.out.println("\nEnter teacher id: ");
             Scanner scanner = new Scanner(System.in);
             String teacherID = scanner.nextLine();
             if (newCollege.findTeacher(teacherID)) {
@@ -176,7 +193,7 @@ public class MainClass {
             }else {
                 System.out.println("Teacher not found");
             }
-            System.out.print("\nFind another teacher? (y/n): \n");
+            System.out.println("\nFind another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
         } while(y == 'y');
@@ -187,20 +204,20 @@ public class MainClass {
         System.out.println("=== Add Teacher ===");
         do{
             enterTeacherDetails(newCollege);
-            System.out.print("\nAdd another teacher? (y/n): \n");
+            System.out.println("\nAdd another teacher? (y/n): \n");
             Scanner scanner = new Scanner(System.in);
             y = scanner.next().charAt(0);
         } while(y == 'y');
     }
 
     public static void enterTeacherDetails(College newCollege){
-        System.out.print("\nEnter teacher id: ");
+        System.out.println("\nEnter teacher id: ");
         Scanner scanner = new Scanner(System.in);
         String teacherID = scanner.nextLine();
-        System.out.print("Enter the name of the teacher: ");
+        System.out.println("Enter the name of the teacher: ");
         scanner = new Scanner(System.in);
         String name = scanner.nextLine();
-        System.out.print("Enter the salary of the teacher: ");
+        System.out.println("Enter the salary of the teacher: ");
         double salary = scanner.nextDouble();
         if ((salary > 0) && (salary < 1000000)) {
             Teacher newTeacher = new Teacher(teacherID, name, salary);
