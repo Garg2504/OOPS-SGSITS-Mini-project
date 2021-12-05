@@ -122,21 +122,36 @@ public class MainClass {
         char y;
         do{
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter student id: ");
-            String studentId = scanner.nextLine();
-            System.out.println("Enter student name: ");
-            String studentName = scanner.nextLine();
-            System.out.println("Enter course name: ");
-            String courseName = scanner.nextLine();
-            System.out.println("Enter course code: ");
-            String courseCode = scanner.nextLine();
-            System.out.println("Enter course fee: ");
-            double courseFee = scanner.nextDouble();
-            Student newStudent = new Student(studentId, studentName, courseName, courseCode, courseFee);
-            newCollege.addStudent(newStudent);
+            enterStudentDetails(newCollege);
             System.out.println("\nAdd another student? (y/n): ");
             y = scanner.next().charAt(0);
         }while(y == 'y');
+    }
+
+    public static void enterStudentDetails(College newCollege){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter student id: ");
+        String studentId = scanner.nextLine();
+        System.out.println("Enter student name: ");
+        String studentName = scanner.nextLine();
+        System.out.println("Enter course name: ");
+        String courseName = scanner.nextLine();
+        System.out.println("Enter course code: ");
+        String courseCode = scanner.nextLine();
+        System.out.println("Enter course fee: ");
+        double courseFee = scanner.nextDouble();
+        if ((!newCollege.findStudent(studentId, courseCode)) && (courseFee > 0 && courseFee < 100000)){
+                Student newStudent = new Student(studentId, studentName, courseName, courseCode, courseFee);
+                newCollege.addStudent(newStudent);
+        }else {
+            System.out.println("*** INVALID INPUT ***" );
+            System.out.println("Student id already exists or Course code is invalid or Course Fee is less than £1.");
+            System.out.println("(1) Duplicate student id is not allowed,\n" +
+                    "(2) Course code must be unique,\n" +
+                    "(3) Student course fee must be between £1.00 and £100000.00\n");
+            System.out.println("Student not added!");
+        }
+
     }
 
     private static void increaseSalary(College newCollege) {
@@ -224,9 +239,9 @@ public class MainClass {
         }else {
             System.out.println("*** INVALID INPUT *** \n" );
             System.out.println("Teacher id already exists or Salary is invalid.");
-            System.out.println("Duplicate teacher id not allowed, " +
-                    "Salary must be between £1.00 and £1000000.00\n");
-            System.out.println("Duplicate teacher not added");
+            System.out.println("(1) Duplicate teacher id not allowed,\n" +
+                    "(2) Salary must be between £1.00 and £1000000.00\n");
+            System.out.println("Teacher not added");
         }
     }
 

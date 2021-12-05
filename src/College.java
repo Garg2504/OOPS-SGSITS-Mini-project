@@ -203,4 +203,53 @@ public class College {
             System.out.println(student.toString());
         }
     }
+
+    /**
+     * Finds a student by ID
+     */
+    public boolean findStudent(String studentID, String courseCode) {
+        for (Student student : students) {
+            if ((student.getId().equals(studentID)) &&
+                    (student.getCourseCode().equals(courseCode))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+   /* *//**
+     * Deletes a student from the list of students
+     *//*
+    ArrayList<Student> deletedStudentList = new ArrayList<>();
+    public boolean removeStudent(String studentID) {
+        for (Student student : students) {
+            if (student.getId().equals(studentID)) {
+                deletedStudentList.add(student);
+                students.removeAll(deletedStudentList);
+                return true;
+            }
+        }
+        return false;
+    }*/
+    /**
+     * Increases student tuition fees
+     * @param studentID : The student ID
+     * @param tuitionIncrease : The tuition to be added
+     * @return: The new tuition
+     */
+    /*public double increaseStudentTuitionFees(String studentID, double tuitionIncrease) {
+        double newTuition = 0;
+        for (Student student : students) {
+            if (student.getId().equals(studentID)) {
+                if (tuitionIncrease > 0) {
+                    student.setTuitionFees(student.getTuitionFees() + tuitionIncrease);
+                    newTuition = student.getTuitionFees();
+                    System.out.println("Tuition Fees Increased Successfully!");
+                }else {
+                    System.out.println("Tuition fees increase cannot be negative");
+                }
+            }
+        }
+        return newTuition;
+    }*/
 }
