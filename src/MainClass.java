@@ -80,7 +80,7 @@ public class MainClass {
                                 addStudents(newCollege);
                                 break;
                             case 2:
-                                System.out.println("\n=== Finding Student ===");
+                                findStudent(newCollege);
                                 break;
                             case 3:
                                 System.out.println("\n=== Paying Tuition Fees ===");
@@ -89,10 +89,9 @@ public class MainClass {
                                 System.out.println("\n=== Outstanding Fees ===");
                                 break;
                             case 5:
-                                System.out.println("\n=== Deleting Student ===");
+                                removeStudent(newCollege);
                                 break;
                             case 6:
-                                System.out.println("\n=== Printing All Students ===");
                                 printAllStudents(newCollege);
                                 break;
                             case 7:
@@ -105,10 +104,45 @@ public class MainClass {
                     System.out.println("\n=== College Finance ===");
                     break;
                 case 4:
-                    System.out.println("\nThank you for using NCFS");
+                    System.out.println("\n=== Exiting NCFS Main Menu ===\n" +
+                            "Thank you and Good Bye!");
                     break;
             }
         }while(selectMainMenu != 4);
+    }
+
+    private static void removeStudent(College newCollege) {
+        System.out.println("\n=== Removing Student ===");
+        char y;
+        do{
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter student id: ");
+            String studentID = scanner.nextLine();
+            System.out.println("Enter student courseCode: ");
+            String courseCode = scanner.nextLine();
+            if(newCollege.findStudent(studentID, courseCode)){
+                newCollege.removeStudent(studentID);
+                System.out.println("\nStudent removed successfully\n");
+            }else{
+                System.out.println("\nStudent not found\n");
+            }
+            System.out.println("Do you want to try again? (y/n)");
+            y = scanner.next().charAt(0);
+            }while (y == 'y');
+    }
+
+    private static void findStudent(College newCollege) {
+        System.out.println("\n=== Find Student ===");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter student id: ");
+        String studentID = scanner.nextLine();
+        System.out.println("Enter student courseCode: ");
+        String courseCode = scanner.nextLine();
+        if(newCollege.findStudent(studentID, courseCode)){
+            System.out.println("\n=== Student Found ===\n");
+        }else{
+            System.out.println("\n=== Student Not Found ===\n");
+        }
     }
 
     private static void printAllStudents(College newCollege) {
@@ -168,8 +202,9 @@ public class MainClass {
                 scanner = new Scanner(System.in);
                 double increase = scanner.nextDouble();
                 newCollege.increaseTeacherSalary(teacherID, increase);
+                System.out.println("\n=== Salary Increase Successful ===\n");
             }else {
-                System.out.println("Teacher not found");
+                System.out.println("\n==Teacher not found==\n");
             }
             System.out.println("\nFind another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
@@ -186,9 +221,9 @@ public class MainClass {
             String teacherID = scanner.nextLine();
             if (newCollege.findTeacher(teacherID)) {
                 newCollege.removeTeacher(teacherID);
-                System.out.println("\nTeacher deleted successfully!");
+                System.out.println("\nTeacher deleted successfully!\n");
             }else {
-                System.out.println("Teacher not found");
+                System.out.println("\nTeacher not found\n");
             }
             System.out.println("\nRemove another teacher? (y/n): \n");
             scanner = new Scanner(System.in);
@@ -204,9 +239,9 @@ public class MainClass {
             Scanner scanner = new Scanner(System.in);
             String teacherID = scanner.nextLine();
             if (newCollege.findTeacher(teacherID)) {
-                System.out.println("\nTeacher found");
+                System.out.println("\nTeacher found\n");
             }else {
-                System.out.println("Teacher not found");
+                System.out.println("\nTeacher not found\n");
             }
             System.out.println("\nFind another teacher? (y/n): \n");
             scanner = new Scanner(System.in);

@@ -217,9 +217,9 @@ public class College {
         return false;
     }
 
-   /* *//**
+   /**
      * Deletes a student from the list of students
-     *//*
+     */
     ArrayList<Student> deletedStudentList = new ArrayList<>();
     public boolean removeStudent(String studentID) {
         for (Student student : students) {
@@ -230,7 +230,7 @@ public class College {
             }
         }
         return false;
-    }*/
+    }
     /**
      * Increases student tuition fees
      * @param studentID : The student ID
