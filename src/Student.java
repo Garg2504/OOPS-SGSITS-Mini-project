@@ -10,7 +10,6 @@ class Student {
     private final String courseName;
     private final String courseCode;
     private double tuitionFees;
-    private double amountPaidTuitionFees;
 
     /**
      * Constructor for Student class
@@ -57,6 +56,7 @@ class Student {
     public String getCourseCode() {
         return courseCode;
     }
+
     /**
      * This method returns the student's tuition fees
      * @return: Student's tuition fees
@@ -64,30 +64,14 @@ class Student {
     public double getTuitionFees() {
         return tuitionFees;
     }
-    /**
-     * This method sets the tuition fees amount paid by student
-     */
-    public void setAmountPaidTuitionFees(double amountPaidTuitionFees) {
-        this.amountPaidTuitionFees = amountPaidTuitionFees;
-    }
-    /**
-     * This method gets the balance of tuition fees amount paid by student
-     * @return: Student's amount paid tuition fees
-     */
-    public double getAmountPaidTuitionFees() {
-        return amountPaidTuitionFees;
-    }
-    /**
-     * This method returns the student's balance tuition fees
-     * @return: Student's balance tuition fees
-     */
-    public double updateTuitionFees(){
-        tuitionFees = getTuitionFees();
-        amountPaidTuitionFees = getAmountPaidTuitionFees();
-        tuitionFees = tuitionFees - amountPaidTuitionFees;
-        return tuitionFees;
-    }
 
+    /**
+     * This method sets the student's tuition fees
+     * @param tuitionFees: Student's tuition fees
+     */
+    public void setTuitionFees(double tuitionFees) {
+        this.tuitionFees = tuitionFees;
+    }
     /**
      * This method returns all the student's details
      * @return: Student's details

@@ -83,7 +83,7 @@ public class MainClass {
                                 findStudent(newCollege);
                                 break;
                             case 3:
-                                System.out.println("\n=== Paying Tuition Fees ===");
+                                payTuitionFees(newCollege);
                                 break;
                             case 4:
                                 System.out.println("\n=== Outstanding Fees ===");
@@ -111,6 +111,28 @@ public class MainClass {
         }while(selectMainMenu != 4);
     }
 
+    private static void payTuitionFees(College newCollege) {
+        System.out.println("\n=== Pay Tuition Fees ===");
+        char y;
+        do{
+            System.out.println("Enter student id: ");
+            Scanner scanner = new Scanner(System.in);
+            String studentID = scanner.nextLine();
+            System.out.println("Enter student course code: ");
+            String courseCode = scanner.nextLine();
+            System.out.println("Enter Tuition Fee Payment: ");
+            double tuitionFees = scanner.nextDouble();
+            if(tuitionFees > 0){
+                newCollege.payStudentTuitionFees(studentID, courseCode, tuitionFees);
+            }else{
+                System.out.println("\nInvalid tuition fee payment!\n" +
+                        "Tuition fee payment must be greater than £1.00.");
+            }
+            System.out.println("\nDo you want to pay more tuition fees? (y/n)");
+        y = scanner.next().charAt(0);
+        }while (y == 'y');
+    }
+
     private static void removeStudent(College newCollege) {
         System.out.println("\n=== Removing Student ===");
         char y;
@@ -118,7 +140,7 @@ public class MainClass {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter student id: ");
             String studentID = scanner.nextLine();
-            System.out.println("Enter student courseCode: ");
+            System.out.println("Enter student course code: ");
             String courseCode = scanner.nextLine();
             if(newCollege.findStudent(studentID, courseCode)){
                 newCollege.removeStudent(studentID);
@@ -136,7 +158,7 @@ public class MainClass {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student id: ");
         String studentID = scanner.nextLine();
-        System.out.println("Enter student courseCode: ");
+        System.out.println("Enter student course code: ");
         String courseCode = scanner.nextLine();
         if(newCollege.findStudent(studentID, courseCode)){
             System.out.println("\n=== Student Found ===\n");

@@ -140,10 +140,11 @@ public class College {
      * Adds money to the total money earned
      * @return totalMoneyEarned
      */
+    //TODO: Add money to the total money earned
     public double calculateTotalMoneyEarned() {
         try{
             for (Student student : students) {
-                totalMoneyEarned += student.getAmountPaidTuitionFees();
+                //totalMoneyEarned += student.getAmountPaidTuitionFees();
             }
         }catch (ArithmeticException e){
             System.out.println("Total money earned cannot be negative");
@@ -231,25 +232,24 @@ public class College {
         }
         return false;
     }
+
     /**
-     * Increases student tuition fees
-     * @param studentID : The student ID
-     * @param tuitionIncrease : The tuition to be added
+     * Pay student's tuition fees
+     * @param tuitionPayment : The tuition fees payment
      * @return: The new tuition
      */
-    /*public double increaseStudentTuitionFees(String studentID, double tuitionIncrease) {
-        double newTuition = 0;
-        for (Student student : students) {
-            if (student.getId().equals(studentID)) {
-                if (tuitionIncrease > 0) {
-                    student.setTuitionFees(student.getTuitionFees() + tuitionIncrease);
-                    newTuition = student.getTuitionFees();
-                    System.out.println("Tuition Fees Increased Successfully!");
+    public double payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
+        double tuitionFeeBal = 0;
+            for (Student student : students) {
+                if(findStudent(studentid, courseid)) {
+                    System.out.println("Tuition Fees Paid Successfully!");
+                    student.setTuitionFees(student.getTuitionFees() - tuitionPayment);
+                    tuitionFeeBal = student.getTuitionFees();
                 }else {
-                    System.out.println("Tuition fees increase cannot be negative");
+                    System.out.println("Student not found\n Transaction Unsuccessful");
                 }
             }
-        }
-        return newTuition;
-    }*/
+        return tuitionFeeBal;
+    }
+
 }
