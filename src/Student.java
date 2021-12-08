@@ -10,6 +10,7 @@ class Student {
     private final String courseName;
     private final String courseCode;
     private double tuitionFees;
+    public double tuitionPayment;
 
     /**
      * Constructor for Student class
@@ -26,6 +27,7 @@ class Student {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.tuitionFees = tuitionFees;
+        this.tuitionPayment = 0;
     }
 
     /**
@@ -72,6 +74,23 @@ class Student {
     public void setTuitionFees(double tuitionFees) {
         this.tuitionFees = tuitionFees;
     }
+
+    /**
+     * Get student tuition fee payment
+     * @return tuitionPayment
+     */
+    public double getTuitionPayment() {
+        return tuitionPayment;
+    }
+
+    /**
+     * Set student tuition fee payment
+     * @param tuitionPayment
+     */
+    public void setTuitionPayment(double tuitionPayment) {
+        this.tuitionPayment = tuitionPayment;
+    }
+
     /**
      * This method returns all the student's details
      * @return: Student's details

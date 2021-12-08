@@ -86,19 +86,16 @@ public class MainClass {
                                 payTuitionFees(newCollege);
                                 break;
                             case 4:
-                                System.out.println("\n=== Outstanding Fees ===");
-                                break;
-                            case 5:
                                 removeStudent(newCollege);
                                 break;
-                            case 6:
+                            case 5:
                                 printAllStudents(newCollege);
                                 break;
-                            case 7:
+                            case 6:
                                 System.out.println("\n=== Exiting Students Menu ===");
                                 break;
                         }
-                    }while(selectSubMenuStudent != 7);
+                    }while(selectSubMenuStudent != 6);
                     break;
                 case 3:
                     System.out.println("\n=== College Finance ===");
