@@ -151,14 +151,12 @@ public class College {
 
     /**
      * Adds money to the total money earned
-     *
      * @return totalMoneyEarned
      */
-    //TODO: Add money to the total money earned
     public double calculateTotalMoneyEarned() {
         try {
             for (Student student : students) {
-                //totalMoneyEarned += student.getAmountPaidTuitionFees();
+                totalMoneyEarned += student.getTuitionFeePaid();
             }
         } catch (ArithmeticException e) {
             System.out.println("Total money earned cannot be negative");
@@ -169,7 +167,6 @@ public class College {
 
     /**
      * Adds money to the total money spent
-     *
      * @return: Total money spent
      */
     public double calculateTotalMoneySpent() {
@@ -261,24 +258,47 @@ public class College {
      * @param tuitionPayment : The tuition fees payment
      * @return: The new tuition
      */
-    public void payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
-        double tuitionFeeBal;
-        double tuitionPaymentBal;
-        double totTuitionPayment = 0;
+    public double payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
+        double tuitionFeePaid = 0;
         for (Student student : students) {
             if (findStudent(studentid, courseid)) {
-                student.setTuitionPayment(tuitionPayment);
-                tuitionPaymentBal = student.getTuitionPayment();
-                System.out.println("Tuition Fees Paid: " + tuitionPaymentBal);
-
-                student.setTuitionFees(student.getTuitionFees() - tuitionPaymentBal);
-                tuitionFeeBal = student.getTuitionFees();
-                System.out.println("Tuition Fees Balance: " + tuitionFeeBal);
-                System.out.println("Tuition Fees Paid Successfully!");
+                student.setTuitionFeePaid(tuitionPayment);
+                tuitionFeePaid = student.getTuitionFeePaid();
             } else {
                 System.out.println("Student not found\nTransaction Unsuccessful");
             }
         }
+        System.out.println("Student ID: " + studentid + ", " +
+                "Tuition Fee Payment: " + tuitionFeePaid);
+        return tuitionFeePaid;
+    }
+
+    public static void main(String[] args) {
+        College college = new College("University of Technology");
+        Teacher teacher1 = new Teacher("001","John Adams", 10000);
+        Teacher teacher2 = new Teacher("002","Jane Smith", 20000);
+        Teacher teacher3 = new Teacher("003","John Doe", 30000);
+        college.addTeacher(teacher1);
+        college.addTeacher(teacher2);
+        college.addTeacher(teacher3);
+        college.printListOfTeachers();
+        double expenses = college.calculateTotalMoneySpent();
+        System.out.println("Total Money Spent: £ " + expenses);
+        Student student1 = new Student("001", "Bill Gates", "Computer Science", "001", 10000);
+        Student student2 = new Student("002", "Steve Jobs", "Marketing", "002", 20000);
+        Student student3 = new Student("003", "Mark Zuckerberg", "Business", "003", 30000);
+        college.addStudent(student1);
+        college.addStudent(student2);
+        college.addStudent(student3);
+        college.printListOfStudents();
+        college.payStudentTuitionFees("001", "001", 3);
+        college.payStudentTuitionFees("002", "002", 3);
+        college.payStudentTuitionFees("003", "003", 3);
+        double income = college.calculateTotalMoneyEarned();
+        System.out.println("Total Money Earned: £ " + income);
+        double totalMoneyLeft = college.calculateTotalMoneyLeft();
+        System.out.println("Total Money Left: £ " + totalMoneyLeft);
+
     }
 }
 

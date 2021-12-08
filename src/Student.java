@@ -9,8 +9,11 @@ class Student {
     private final String name;
     private final String courseName;
     private final String courseCode;
-    private double tuitionFees;
-    public double tuitionPayment;
+    private final double tuitionFeePrice;
+    private double tuitionFee;
+    private double tuitionFeePaid;
+    private double tuitionFeeBalance;
+
 
     /**
      * Constructor for Student class
@@ -18,16 +21,18 @@ class Student {
      * @param name: Student's name
      * @param courseName: Student's course name
      * @param courseCode: Student's course code
-     * @param tuitionFees: Student's tuition fees
+     * @param tuitionFeePrice: Student's tuition fees
      */
 
-    public Student(String id, String name, String courseName, String courseCode, double tuitionFees) {
+    public Student(String id, String name, String courseName, String courseCode, double tuitionFeePrice) {
         this.id = id;
         this.name = name;
         this.courseName = courseName;
         this.courseCode = courseCode;
-        this.tuitionFees = tuitionFees;
-        this.tuitionPayment = 0;
+        this.tuitionFeePrice = tuitionFeePrice;
+        this.tuitionFee = tuitionFeePrice;
+        this.tuitionFeePaid = 0;
+        this.tuitionFeeBalance = 0;
     }
 
     /**
@@ -61,34 +66,45 @@ class Student {
 
     /**
      * This method returns the student's tuition fees
-     * @return: Student's tuition fees
+     * It is final, used for holding the price of tuition fees
+     * @return: Student's tuition fees price
      */
-    public double getTuitionFees() {
-        return tuitionFees;
+    public double getTuitionFeePrice() {
+        return tuitionFeePrice;
     }
 
     /**
-     * This method sets the student's tuition fees
-     * @param tuitionFees: Student's tuition fees
+     * This method returns the student's tuition fees
+     * It is not final, it holds the price of the tuition fee and
+     * used to calculate the balance of the tuition fee
+     * @return tuitionFee: Student's tuition fees
      */
-    public void setTuitionFees(double tuitionFees) {
-        this.tuitionFees = tuitionFees;
+    public double getTuitionFee() {
+        return tuitionFee;
     }
 
     /**
-     * Get student tuition fee payment
-     * @return tuitionPayment
+     * Sets the student's tuition fee
+     * @param tuitionFeePaid: Student's tuition fee paid
      */
-    public double getTuitionPayment() {
-        return tuitionPayment;
+    public void setTuitionFeePaid(double tuitionFeePaid) {
+        this.tuitionFeePaid = tuitionFeePaid;
     }
 
     /**
-     * Set student tuition fee payment
-     * @param tuitionPayment
+     * Get student tuition fee paid
+     * @return tuitionFeePaid: Student's tuition fee paid
      */
-    public void setTuitionPayment(double tuitionPayment) {
-        this.tuitionPayment = tuitionPayment;
+    public double getTuitionFeePaid() {
+        return tuitionFeePaid;
+    }
+    /**
+     * Get student tuition fee balance
+     * @return tuitionFeeBalance
+     */
+    public double tuitionFeeBalance() {
+        tuitionFeeBalance = getTuitionFee() - getTuitionFeePaid();
+        return tuitionFeeBalance;
     }
 
     /**
@@ -101,6 +117,7 @@ class Student {
                 ", Name: " + name +
                 ", Course Name: " + courseName +
                 ", Course Code: " + courseCode +
-                ", Tuition Fees: £ " + tuitionFees;
+                ", Tuition Fees: £ " + tuitionFeePrice;
     }
+
 }
