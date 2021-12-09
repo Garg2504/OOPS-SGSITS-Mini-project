@@ -1,5 +1,7 @@
 # Java Project: College Finance Management System
-
+Work in progress ... 
+Once Completed!
+👇 👇 👇
 Future plans:
 1. Implement Test Class
 2. Class improvement:
