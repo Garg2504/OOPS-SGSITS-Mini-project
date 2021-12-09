@@ -68,10 +68,9 @@ public class MainClass {
                         System.out.println("1. Add Student\n" +
                                 "2. Find Student\n" +
                                 "3. Pay Tuition Fees\n" +
-                                "4. Outstanding Fees\n" +
-                                "5. Delete Student\n" +
-                                "6. Print All Students\n" +
-                                "7. Exit");
+                                "4. Delete Student\n" +
+                                "5. Print All Students\n" +
+                                "6. Exit");
                         System.out.println("\nSelect an option: ");
                         Scanner scannerSubMenuStudent = new Scanner(System.in);
                         selectSubMenuStudent = scannerSubMenuStudent.nextInt();
@@ -108,6 +107,9 @@ public class MainClass {
         }while(selectMainMenu != 4);
     }
 
+    /**
+     * This method is used to calculate the tuition fees paid by a student
+     */
     private static void payTuitionFees(College newCollege) {
         System.out.println("\n=== Pay Tuition Fees ===");
         char y;
@@ -125,11 +127,14 @@ public class MainClass {
                 System.out.println("\nInvalid tuition fee payment!\n" +
                         "Tuition fee payment must be greater than £1.00.");
             }
-            System.out.println("\nDo you want to pay more tuition fees? (y/n)");
-        y = scanner.next().charAt(0);
+            System.out.println("Do you want to pay more tuition fees? (y/n)");
+            y = scanner.next().charAt(0);
         }while (y == 'y');
     }
 
+    /**
+     * This method is used to remove a student from the college
+     */
     private static void removeStudent(College newCollege) {
         System.out.println("\n=== Removing Student ===");
         char y;
@@ -150,6 +155,9 @@ public class MainClass {
             }while (y == 'y');
     }
 
+    /**
+     * This method is used to find students in the college
+     */
     private static void findStudent(College newCollege) {
         System.out.println("\n=== Find Student ===");
         Scanner scanner = new Scanner(System.in);
@@ -164,12 +172,18 @@ public class MainClass {
         }
     }
 
+    /**
+     * This method is used to print all students in the college
+     */
     private static void printAllStudents(College newCollege) {
         System.out.println("\n=== Students List ===");
         newCollege.printListOfStudents();
         System.out.println("\n");
     }
 
+    /**
+     * This method is used to add a student to the college
+     */
     private static void addStudents(College newCollege) {
         System.out.println("\n=== Adding Student ===");
         char y;
@@ -181,6 +195,9 @@ public class MainClass {
         }while(y == 'y');
     }
 
+    /**
+     * This method is used to enter student details
+     */
     public static void enterStudentDetails(College newCollege){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter student id: ");
@@ -207,6 +224,9 @@ public class MainClass {
 
     }
 
+    /**
+     * This method is used to increase the salary of a Teacher
+     */
     private static void increaseSalary(College newCollege) {
         System.out.println("=== Increase Teachers Salary ===");
         Scanner scanner;
@@ -231,6 +251,9 @@ public class MainClass {
         } while(y == 'y');
     }
 
+    /**
+     * This method is used to remove a teacher in the college
+     */
     private static void removeTeacher(College newCollege) {
         System.out.println("\n=== Delete Teacher ===");
         char y;
@@ -250,6 +273,9 @@ public class MainClass {
         } while(y == 'y');
     }
 
+    /**
+     * This method is used to find a teacher in the college
+     */
     private static void findTeacher(College newCollege){
         System.out.println("\n=== Find Teacher ===");
         char y;
@@ -268,6 +294,9 @@ public class MainClass {
         } while(y == 'y');
     }
 
+    /**
+     * This method is used to add a teacher to the college
+     */
     public static void addTeachers(College newCollege){
         char y;
         System.out.println("=== Add Teacher ===");
@@ -279,6 +308,9 @@ public class MainClass {
         } while(y == 'y');
     }
 
+    /**
+     * This method is used to enter the details of a teacher
+     */
     public static void enterTeacherDetails(College newCollege){
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nEnter teacher id: ");
@@ -299,6 +331,9 @@ public class MainClass {
         }
     }
 
+    /**
+     * This method is used to print all the teachers in the college
+     */
     public static void printAllTeachers(College newCollege){
         System.out.println("\n=== Teachers List ===");
         newCollege.printListOfTeachers();

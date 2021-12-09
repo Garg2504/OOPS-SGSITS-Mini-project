@@ -9,10 +9,10 @@ class Student {
     private final String name;
     private final String courseName;
     private final String courseCode;
-    private final double tuitionFeePrice;
-    private double tuitionFee;
-    private double tuitionFeePaid;
-    private double tuitionFeeBalance;
+    private final double tuitionFee;
+    private double amount;
+    private double tuitionPaid;
+    private double totalTuitionPaid;
 
 
     /**
@@ -21,18 +21,18 @@ class Student {
      * @param name: Student's name
      * @param courseName: Student's course name
      * @param courseCode: Student's course code
-     * @param tuitionFeePrice: Student's tuition fees
+     * @param tuitionFee: Student's tuition fees
      */
 
-    public Student(String id, String name, String courseName, String courseCode, double tuitionFeePrice) {
+    public Student(String id, String name, String courseName, String courseCode, double tuitionFee) {
         this.id = id;
         this.name = name;
         this.courseName = courseName;
         this.courseCode = courseCode;
-        this.tuitionFeePrice = tuitionFeePrice;
-        this.tuitionFee = tuitionFeePrice;
-        this.tuitionFeePaid = 0;
-        this.tuitionFeeBalance = 0;
+        this.tuitionFee = tuitionFee;
+        amount = tuitionFee;
+        tuitionPaid = 0;
+        totalTuitionPaid = 0;
     }
 
     /**
@@ -42,6 +42,7 @@ class Student {
     public String getId() {
         return id;
     }
+
     /**
      * This method returns the student's name
      * @return: Student's name
@@ -49,6 +50,7 @@ class Student {
     public String getName() {
         return name;
     }
+
     /**
      * This method returns the student's course name
      * @return: Student's course name
@@ -56,6 +58,7 @@ class Student {
     public String getCourseName() {
         return courseName;
     }
+
     /**
      * This method returns the student's course code
      * @return: Student's course code
@@ -69,42 +72,52 @@ class Student {
      * It is final, used for holding the price of tuition fees
      * @return: Student's tuition fees price
      */
-    public double getTuitionFeePrice() {
-        return tuitionFeePrice;
-    }
-
-    /**
-     * This method returns the student's tuition fees
-     * It is not final, it holds the price of the tuition fee and
-     * used to calculate the balance of the tuition fee
-     * @return tuitionFee: Student's tuition fees
-     */
     public double getTuitionFee() {
         return tuitionFee;
     }
 
     /**
-     * Sets the student's tuition fee
-     * @param tuitionFeePaid: Student's tuition fee paid
+     * This method returns the student's tuition fee as an amount,
+     * it is used for holding the price of tuition fees for calculating
+     * the total tuition fees paid by the students.
+     * @return: Student's amount
      */
-    public void setTuitionFeePaid(double tuitionFeePaid) {
-        this.tuitionFeePaid = tuitionFeePaid;
+    public double getAmount() {
+        return amount;
     }
 
     /**
-     * Get student tuition fee paid
-     * @return tuitionFeePaid: Student's tuition fee paid
+     * This method sets the student's tuition paid
+     * @param tuitionPaid: Student's tuition paid
      */
-    public double getTuitionFeePaid() {
-        return tuitionFeePaid;
+    public void setTuitionPaid(double tuitionPaid) {
+        this.tuitionPaid = tuitionPaid;
     }
+
     /**
-     * Get student tuition fee balance
-     * @return tuitionFeeBalance
+     * This method gets the student's tuition paid
+     * @return: Student's tuition paid
      */
-    public double tuitionFeeBalance() {
-        tuitionFeeBalance = getTuitionFee() - getTuitionFeePaid();
-        return tuitionFeeBalance;
+    public double getTuitionPaid() {
+        return tuitionPaid;
+    }
+
+    /**
+     * This method calculates the student's outstanding fees
+     * @return: Student's outstanding fees
+     */
+    public double payTuitionFee(){
+        this.amount = amount - tuitionPaid;
+        return amount;
+    }
+
+    /**
+     * This method calculates the student's total tuition fees paid
+     * @return: Student's total tuition fees paid
+     */
+    public double totalTuitionPaid() {
+        this.totalTuitionPaid = this.totalTuitionPaid + this.tuitionPaid;
+        return totalTuitionPaid;
     }
 
     /**
@@ -117,7 +130,19 @@ class Student {
                 ", Name: " + name +
                 ", Course Name: " + courseName +
                 ", Course Code: " + courseCode +
-                ", Tuition Fees: £ " + tuitionFeePrice;
+                ", Tuition Fees: £ " + tuitionFee;
     }
 
+    /**
+     * This method returns the student's details
+     * Overrides the toString method
+     * @return: Student's details
+     */
+    public String toString2() {
+        return "Student ID: " + id +
+                ", Name: " + name +
+                ", Course Name: " + courseName +
+                ", Course Code: " + courseCode +
+                ", Tuition Fees Paid To-Date: £ " + totalTuitionPaid;
+    }
 }

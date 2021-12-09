@@ -21,6 +21,7 @@ public class Teacher {
         this.name = name;
         this.salary = salary;
     }
+
     /**
      * Gets the teacher's id
      * @return: The teacher's id
@@ -28,6 +29,7 @@ public class Teacher {
     public String getId() {
         return id;
     }
+
     /**
      * Gets the teacher's name
      * @return: The teacher's name
@@ -35,6 +37,7 @@ public class Teacher {
     public String getName() {
         return name;
     }
+
     /**
      * Gets the teacher's salary
      * @return: The teacher's salary
@@ -42,6 +45,7 @@ public class Teacher {
     public double getSalary() {
         return salary;
     }
+
     /**
      * Sets the teacher's salary
      * @param salary: The teacher's salary

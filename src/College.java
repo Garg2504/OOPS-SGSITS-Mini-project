@@ -17,8 +17,12 @@ public class College {
 
     /**
      * Constructor for College Class
-     *
      * @param collegeName : The name of the college
+     * students : The list of students
+     * teacher : The list of teachers
+     * totalMoneyEarned : The total money earned
+     * totalMoneySpent : The total money spent
+     * totalMoneyLeft : The total money left
      */
 
     public College(String collegeName) {
@@ -32,8 +36,7 @@ public class College {
 
     /**
      * Gets the college name
-     *
-     * @return: The name of the college
+     * @return: collegeName: The name of the college
      */
 
     public String getCollegeName() {
@@ -42,8 +45,7 @@ public class College {
 
     /**
      * Gets list of students
-     *
-     * @return: The list of students
+     * @return: students: The list of students
      */
     public ArrayList<Student> getStudents() {
         return students;
@@ -51,8 +53,7 @@ public class College {
 
     /**
      * Gets list of teachers
-     *
-     * @return: The list of teachers
+     * @return: teachers: The list of teachers
      */
     public ArrayList<Teacher> getTeachers() {
         return teachers;
@@ -60,8 +61,7 @@ public class College {
 
     /**
      * Gets total money earned
-     *
-     * @return: The total money earned
+     * @return: totalMoneyEarned: The total money earned
      */
     public double getTotalMoneyEarned() {
         return totalMoneyEarned;
@@ -69,17 +69,22 @@ public class College {
 
     /**
      * Gets total money spent
-     *
-     * @return: The total money spent
+     * @return: totalMoneySpent: The total money spent
      */
     public double getTotalMoneySpent() {
         return totalMoneySpent;
     }
 
+    /**
+     * Gets total money left
+     * @return: totalMoneyLeft: The total money left
+     */
+    public double getTotalMoneyLeft() {
+        return totalMoneyLeft;
+    }
 
     /**
      * Adds a student to the list of students
-     *
      * @param student: The student to be added
      */
     public void addStudent(Student student) {
@@ -88,7 +93,6 @@ public class College {
 
     /**
      * Adds a teacher to the list of teachers
-     *
      * @param teacher: The teacher to be added
      */
 
@@ -98,8 +102,8 @@ public class College {
 
     /**
      * Finds a teacher by ID
-     *
      * @param teacherID: The teacher ID
+     * @return: teacher: The teacher
      */
     public boolean findTeacher(String teacherID) {
         for (Teacher teacher : teachers) {
@@ -128,10 +132,9 @@ public class College {
 
     /**
      * Increases teacher salary
-     *
-     * @param teacherID      : The teacher ID
+     * @param teacherID : The teacher ID
      * @param salaryIncrease : The salary to be added
-     * @return: The new salary
+     * @return: newSalary: The new salary
      */
     public double increaseTeacherSalary(String teacherID, double salaryIncrease) {
         double newSalary = 0;
@@ -151,12 +154,12 @@ public class College {
 
     /**
      * Adds money to the total money earned
-     * @return totalMoneyEarned
+     * @return totalMoneyEarned: the total money earned
      */
     public double calculateTotalMoneyEarned() {
         try {
             for (Student student : students) {
-                totalMoneyEarned += student.getTuitionFeePaid();
+                // TODO: Calculate total money earned
             }
         } catch (ArithmeticException e) {
             System.out.println("Total money earned cannot be negative");
@@ -167,12 +170,13 @@ public class College {
 
     /**
      * Adds money to the total money spent
-     * @return: Total money spent
+     * @return: totalMoneySpent: Total money spent
      */
     public double calculateTotalMoneySpent() {
         try {
             for (Teacher teacher : teachers) {
-                totalMoneySpent += teacher.getSalary();
+                // TODO: Calculate total money spent
+                //totalMoneySpent += teacher.getSalary();
             }
         } catch (ArithmeticException e) {
             System.out.println("Total money spent cannot be negative");
@@ -183,25 +187,16 @@ public class College {
 
     /**
      * Calculates the total money left
-     *
-     * @return: Total money left
+     * @return: totalMoneyLeft: Total money left
      */
     public double calculateTotalMoneyLeft() {
         try {
-            totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
+            // TODO: Calculate total money left
+            //totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
         } catch (ArithmeticException e) {
             System.out.println("Total money left cannot be negative");
             e.printStackTrace();
         }
-        return totalMoneyLeft;
-    }
-
-    /**
-     * Gets total money left
-     *
-     * @return: Total money left
-     */
-    public double getTotalMoneyLeft() {
         return totalMoneyLeft;
     }
 
@@ -225,6 +220,9 @@ public class College {
 
     /**
      * Finds a student by ID
+     * @param studentID: The student ID
+     *        courseID: The course ID
+     * @return: student: The student
      */
     public boolean findStudent(String studentID, String courseCode) {
         for (Student student : students) {
@@ -254,51 +252,27 @@ public class College {
 
     /**
      * Pay student's tuition fees
-     *
-     * @param tuitionPayment : The tuition fees payment
+     * @param studentid: The student ID
+     *        courseCode: The course code
+     *        tuitionPayment : The tuition fees payment
      * @return: The new tuition
      */
-    public double payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
-        double tuitionFeePaid = 0;
+    public boolean payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
         for (Student student : students) {
             if (findStudent(studentid, courseid)) {
-                student.setTuitionFeePaid(tuitionPayment);
-                tuitionFeePaid = student.getTuitionFeePaid();
+                System.out.println("Tuition Fees: £ " + student.getAmount());
+                student.setTuitionPaid(tuitionPayment);
+                System.out.println("Tuition Fees Paid: £ " + student.getTuitionPaid());
+                System.out.println("Amount Outstanding: £ " + student.payTuitionFee());
+                System.out.println();
+                System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
+                System.out.println();
+                return true;
             } else {
                 System.out.println("Student not found\nTransaction Unsuccessful");
             }
         }
-        System.out.println("Student ID: " + studentid + ", " +
-                "Tuition Fee Payment: " + tuitionFeePaid);
-        return tuitionFeePaid;
-    }
-
-    public static void main(String[] args) {
-        College college = new College("University of Technology");
-        Teacher teacher1 = new Teacher("001","John Adams", 10000);
-        Teacher teacher2 = new Teacher("002","Jane Smith", 20000);
-        Teacher teacher3 = new Teacher("003","John Doe", 30000);
-        college.addTeacher(teacher1);
-        college.addTeacher(teacher2);
-        college.addTeacher(teacher3);
-        college.printListOfTeachers();
-        double expenses = college.calculateTotalMoneySpent();
-        System.out.println("Total Money Spent: £ " + expenses);
-        Student student1 = new Student("001", "Bill Gates", "Computer Science", "001", 10000);
-        Student student2 = new Student("002", "Steve Jobs", "Marketing", "002", 20000);
-        Student student3 = new Student("003", "Mark Zuckerberg", "Business", "003", 30000);
-        college.addStudent(student1);
-        college.addStudent(student2);
-        college.addStudent(student3);
-        college.printListOfStudents();
-        college.payStudentTuitionFees("001", "001", 3);
-        college.payStudentTuitionFees("002", "002", 3);
-        college.payStudentTuitionFees("003", "003", 3);
-        double income = college.calculateTotalMoneyEarned();
-        System.out.println("Total Money Earned: £ " + income);
-        double totalMoneyLeft = college.calculateTotalMoneyLeft();
-        System.out.println("Total Money Left: £ " + totalMoneyLeft);
-
+        return false;
     }
 }
 
