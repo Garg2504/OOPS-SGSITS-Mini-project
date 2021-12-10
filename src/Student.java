@@ -30,7 +30,11 @@ class Student {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.tuitionFee = tuitionFee;
-        amount = tuitionFee;
+        if ((tuitionFee > 0) && (tuitionFee < 100000)) {
+            amount = tuitionFee;
+        }else {
+            System.out.println("Tuition fees must be between £1.00 and £100000.00");
+        }
         tuitionPaid = 0;
         totalTuitionPaid = 0;
     }

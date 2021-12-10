@@ -140,12 +140,12 @@ public class College {
         double newSalary = 0;
         for (Teacher teacher : teachers) {
             if (teacher.getId().equals(teacherID)) {
-                if (salaryIncrease > 0) {
+                if ((salaryIncrease > 0) && (salaryIncrease < 100000)) {
                     teacher.setSalary(teacher.getSalary() + salaryIncrease);
                     newSalary = teacher.getSalary();
                     System.out.println("Salary Increased Successfully!");
                 } else {
-                    System.out.println("Salary increase cannot be negative");
+                    System.out.println("Salary Increase must be between £1.00 and £100000.00");
                 }
             }
         }
@@ -173,15 +173,9 @@ public class College {
      * @return: totalMoneySpent: Total money spent
      */
     public double calculateTotalMoneySpent() {
-        try {
             for (Teacher teacher : teachers) {
-                // TODO: Calculate total money spent
-                //totalMoneySpent += teacher.getSalary();
+                this.totalMoneySpent += teacher.getSalary();
             }
-        } catch (ArithmeticException e) {
-            System.out.println("Total money spent cannot be negative");
-            e.printStackTrace();
-        }
         return totalMoneySpent;
     }
 
@@ -260,15 +254,22 @@ public class College {
     public boolean payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
         for (Student student : students) {
             if (findStudent(studentid, courseid)) {
-                System.out.println("Tuition Fees: £ " + student.getAmount());
-                student.setTuitionPaid(tuitionPayment);
-                System.out.println("Tuition Fees Paid: £ " + student.getTuitionPaid());
-                System.out.println("Amount Outstanding: £ " + student.payTuitionFee());
-                System.out.println();
-                System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
-                System.out.println();
-                return true;
-            } else {
+                if ((student.getTuitionPaid() < student.getAmount()) || (student.getTuitionPaid() == student.getAmount())) {
+                    System.out.println("Tuition Fees: £ " + student.getAmount());
+                    student.setTuitionPaid(tuitionPayment);
+                    System.out.println("Tuition Fees Paid: £ " + student.getTuitionPaid());
+                    System.out.println("Amount Outstanding: £ " + student.payTuitionFee());
+                    System.out.println();
+                    System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
+                    System.out.println();
+                    return true;
+                }else {
+                    System.out.println("=== ERROR ===\nYou have paid more than the tuition fees!");
+                    System.out.println("Tuition Fees: £ " + student.getTuitionFee());
+                    System.out.println("Tuition Required To Pay: £ " + student.getAmount());
+                }
+            }
+            else {
                 System.out.println("Student not found\nTransaction Unsuccessful");
             }
         }

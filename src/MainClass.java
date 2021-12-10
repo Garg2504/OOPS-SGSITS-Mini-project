@@ -13,8 +13,8 @@ public class MainClass {
         int selectSubMenuTeacher;
         int selectSubMenuStudent;
         int selectSubMenuCollege;
-        /**
-         * This is the main menu
+        /*
+          This is the main menu
          */
         College newCollege = new College("New College");
         System.out.println("===================================\n" + newCollege.getCollegeName()
@@ -31,13 +31,13 @@ public class MainClass {
             System.out.println("\nSelect an option: ");
             Scanner scannerMainMenu = new Scanner(System.in);
             selectMainMenu = scannerMainMenu.nextInt();
-            /**
-             * This is the submenu menu for teachers finance
+            /*
+              This is the submenu menu for teachers finance
              */
             switch (selectMainMenu){
                 case 1:
-                    System.out.println("\n=== Teachers Finance ===");
                     do{
+                        System.out.println("\n=== Teachers Finance ===");
                         System.out.println("1. Add Teacher\n" +
                                 "2. Find Teacher\n" +
                                 "3. Increase Salary\n" +
@@ -69,12 +69,12 @@ public class MainClass {
                         }
                     }while(selectSubMenuTeacher != 6);
                     break;
-                /**
-                 * This is the submenu menu for students finance
+                /*
+                  This is the submenu menu for students finance
                  */
                 case 2:
-                    System.out.println("\n=== Students Finance ===");
                     do{
+                        System.out.println("\n=== Students Finance ===");
                         System.out.println("1. Add Student\n" +
                                 "2. Find Student\n" +
                                 "3. Pay Tuition Fees\n" +
@@ -106,12 +106,12 @@ public class MainClass {
                         }
                     }while(selectSubMenuStudent != 6);
                     break;
-                /**
-                 * This is the submenu menu for college finance
+                /*
+                  This is the submenu menu for college finance
                  */
                 case 3:
-                    System.out.println("\n=== College Finance ===");
                     do{
+                        System.out.println("\n=== College Finance ===");
                         System.out.println("1. Total College Income\n" +
                                 "2. Total College Expenses\n" +
                                 "3. Total College Balance\n" +
@@ -119,6 +119,9 @@ public class MainClass {
                         System.out.println("\nSelect an option: ");
                         Scanner scannerSubMenuCollege = new Scanner(System.in);
                         selectSubMenuCollege = scannerSubMenuCollege.nextInt();
+                        /*
+                          This is the submenu menu for college finance
+                         */
                         switch (selectSubMenuCollege){
                             case 1:
                                 System.out.println("=== Total College Income ===");
@@ -126,7 +129,7 @@ public class MainClass {
                                 break;
                             case 2:
                                 System.out.println("=== Total College Expenses ===");
-                                //totalCollegeExpenses(newCollege);
+                                totalCollegeExpenses(newCollege);
                                 break;
                             case 3:
                                 System.out.println("=== Total College Balance ===");
@@ -146,6 +149,11 @@ public class MainClass {
         }while(selectMainMenu != 4);
     }
 
+    private static void totalCollegeExpenses(College newCollege) {
+        newCollege.printListOfTeachers();
+        System.out.println("Total Expenses: £ " + newCollege.calculateTotalMoneySpent() + "\n");
+    }
+
     /**
      * This method is used to calculate the tuition fees paid by a student
      */
@@ -160,11 +168,11 @@ public class MainClass {
             String courseCode = scanner.nextLine();
             System.out.println("Enter Tuition Fee Payment: ");
             double tuitionFees = scanner.nextDouble();
-            if(tuitionFees > 0){
+            if((tuitionFees > 0) && (tuitionFees < 1000000)){
                 newCollege.payStudentTuitionFees(studentID, courseCode, tuitionFees);
             }else{
                 System.out.println("\nInvalid tuition fee payment!\n" +
-                        "Tuition fee payment must be greater than £1.00.");
+                        "Tuition fee payment must be between £1.00 and £100000.00.");
             }
             System.out.println("Do you want to pay more tuition fees? (y/n)");
             y = scanner.next().charAt(0);
