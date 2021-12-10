@@ -12,6 +12,10 @@ public class MainClass {
         int selectMainMenu;
         int selectSubMenuTeacher;
         int selectSubMenuStudent;
+        int selectSubMenuCollege;
+        /**
+         * This is the main menu
+         */
         College newCollege = new College("New College");
         System.out.println("===================================\n" + newCollege.getCollegeName()
                 + " Financial System"
@@ -27,6 +31,9 @@ public class MainClass {
             System.out.println("\nSelect an option: ");
             Scanner scannerMainMenu = new Scanner(System.in);
             selectMainMenu = scannerMainMenu.nextInt();
+            /**
+             * This is the submenu menu for teachers finance
+             */
             switch (selectMainMenu){
                 case 1:
                     System.out.println("\n=== Teachers Finance ===");
@@ -62,6 +69,9 @@ public class MainClass {
                         }
                     }while(selectSubMenuTeacher != 6);
                     break;
+                /**
+                 * This is the submenu menu for students finance
+                 */
                 case 2:
                     System.out.println("\n=== Students Finance ===");
                     do{
@@ -96,8 +106,37 @@ public class MainClass {
                         }
                     }while(selectSubMenuStudent != 6);
                     break;
+                /**
+                 * This is the submenu menu for college finance
+                 */
                 case 3:
                     System.out.println("\n=== College Finance ===");
+                    do{
+                        System.out.println("1. Total College Income\n" +
+                                "2. Total College Expenses\n" +
+                                "3. Total College Balance\n" +
+                                "4. Exit");
+                        System.out.println("\nSelect an option: ");
+                        Scanner scannerSubMenuCollege = new Scanner(System.in);
+                        selectSubMenuCollege = scannerSubMenuCollege.nextInt();
+                        switch (selectSubMenuCollege){
+                            case 1:
+                                System.out.println("=== Total College Income ===");
+                                //totalCollegeIncome(newCollege);
+                                break;
+                            case 2:
+                                System.out.println("=== Total College Expenses ===");
+                                //totalCollegeExpenses(newCollege);
+                                break;
+                            case 3:
+                                System.out.println("=== Total College Balance ===");
+                                //totalCollegeBalance(newCollege);
+                                break;
+                            case 4:
+                                System.out.println("\n=== Exiting College Finance Menu ===");
+                                break;
+                        }
+                    }while(selectSubMenuCollege != 4);
                     break;
                 case 4:
                     System.out.println("\n=== Exiting NCFS Main Menu ===\n" +
