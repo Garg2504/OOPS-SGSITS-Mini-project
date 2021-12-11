@@ -157,13 +157,8 @@ public class College {
      * @return totalMoneyEarned: the total money earned
      */
     public double calculateTotalMoneyEarned() {
-        try {
-            for (Student student : students) {
-                // TODO: Calculate total money earned
-            }
-        } catch (ArithmeticException e) {
-            System.out.println("Total money earned cannot be negative");
-            e.printStackTrace();
+        for (Student student : students) {
+            this.totalMoneyEarned = student.getTotalTuitionPaid();
         }
         return totalMoneyEarned;
     }
@@ -251,9 +246,8 @@ public class College {
      *        tuitionPayment : The tuition fees payment
      * @return: The new tuition
      */
-    public boolean payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
+    public void payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
         for (Student student : students) {
-            if (findStudent(studentid, courseid)) {
                 if ((student.getTuitionPaid() < student.getAmount()) || (student.getTuitionPaid() == student.getAmount())) {
                     System.out.println("Tuition Fees: £ " + student.getAmount());
                     student.setTuitionPaid(tuitionPayment);
@@ -262,18 +256,13 @@ public class College {
                     System.out.println();
                     System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
                     System.out.println();
-                    return true;
                 }else {
                     System.out.println("=== ERROR ===\nYou have paid more than the tuition fees!");
                     System.out.println("Tuition Fees: £ " + student.getTuitionFee());
                     System.out.println("Tuition Required To Pay: £ " + student.getAmount());
                 }
-            }
-            else {
-                System.out.println("Student not found\nTransaction Unsuccessful");
-            }
         }
-        return false;
     }
+
 }
 

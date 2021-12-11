@@ -125,6 +125,7 @@ public class MainClass {
                         switch (selectSubMenuCollege){
                             case 1:
                                 System.out.println("=== Total College Income ===");
+                                // TODO: Calculate total college income
                                 //totalCollegeIncome(newCollege);
                                 break;
                             case 2:
@@ -133,6 +134,7 @@ public class MainClass {
                                 break;
                             case 3:
                                 System.out.println("=== Total College Balance ===");
+                                // TODO: Calculate total college balance
                                 //totalCollegeBalance(newCollege);
                                 break;
                             case 4:

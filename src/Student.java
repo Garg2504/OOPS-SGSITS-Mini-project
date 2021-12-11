@@ -111,7 +111,7 @@ class Student {
      * @return: Student's outstanding fees
      */
     public double payTuitionFee(){
-        this.amount = amount - tuitionPaid;
+        this.amount -= tuitionPaid;
         return amount;
     }
 
@@ -120,7 +120,15 @@ class Student {
      * @return: Student's total tuition fees paid
      */
     public double totalTuitionPaid() {
-        this.totalTuitionPaid = this.totalTuitionPaid + this.tuitionPaid;
+        this.totalTuitionPaid += this.tuitionPaid;
+        return totalTuitionPaid;
+    }
+
+    /**
+     * This method gets the student's total tuition fees paid
+     * @return: Student's total tuition fees paid
+     */
+    public double getTotalTuitionPaid() {
         return totalTuitionPaid;
     }
 
