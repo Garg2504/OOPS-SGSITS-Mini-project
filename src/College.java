@@ -159,6 +159,7 @@ public class College {
     public double calculateTotalMoneyEarned() {
         for (Student student : students) {
             this.totalMoneyEarned = student.getTotalTuitionPaid();
+            System.out.println(student.toString2());
         }
         return totalMoneyEarned;
     }
@@ -170,6 +171,7 @@ public class College {
     public double calculateTotalMoneySpent() {
             for (Teacher teacher : teachers) {
                 this.totalMoneySpent += teacher.getSalary();
+                System.out.println(teacher.toString());
             }
         return totalMoneySpent;
     }
@@ -179,13 +181,7 @@ public class College {
      * @return: totalMoneyLeft: Total money left
      */
     public double calculateTotalMoneyLeft() {
-        try {
-            // TODO: Calculate total money left
-            //totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
-        } catch (ArithmeticException e) {
-            System.out.println("Total money left cannot be negative");
-            e.printStackTrace();
-        }
+        totalMoneyLeft = totalMoneyEarned - totalMoneySpent;
         return totalMoneyLeft;
     }
 
@@ -248,21 +244,18 @@ public class College {
      */
     public void payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
         for (Student student : students) {
-                if ((student.getTuitionPaid() < student.getAmount()) || (student.getTuitionPaid() == student.getAmount())) {
-                    System.out.println("Tuition Fees: £ " + student.getAmount());
-                    student.setTuitionPaid(tuitionPayment);
-                    System.out.println("Tuition Fees Paid: £ " + student.getTuitionPaid());
-                    System.out.println("Amount Outstanding: £ " + student.payTuitionFee());
-                    System.out.println();
-                    System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
-                    System.out.println();
-                }else {
-                    System.out.println("=== ERROR ===\nYou have paid more than the tuition fees!");
-                    System.out.println("Tuition Fees: £ " + student.getTuitionFee());
-                    System.out.println("Tuition Required To Pay: £ " + student.getAmount());
-                }
+            if (findStudent(studentid, courseid)) {
+                System.out.println("Tuition Fees: £ " + student.getAmount());
+                student.setTuitionPaid(tuitionPayment);
+                System.out.println("Tuition Fees Paid: £ " + student.getTuitionPaid());
+                System.out.println("Amount Outstanding: £ " + student.payTuitionFee());
+                System.out.println();
+                System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
+                System.out.println();
+            } else {
+                System.out.println("Student not found");
+            }
         }
     }
-
 }
 

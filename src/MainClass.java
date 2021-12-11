@@ -124,18 +124,13 @@ public class MainClass {
                          */
                         switch (selectSubMenuCollege){
                             case 1:
-                                System.out.println("=== Total College Income ===");
-                                // TODO: Calculate total college income
-                                //totalCollegeIncome(newCollege);
+                                totalCollegeIncome(newCollege);
                                 break;
                             case 2:
-                                System.out.println("=== Total College Expenses ===");
                                 totalCollegeExpenses(newCollege);
                                 break;
                             case 3:
-                                System.out.println("=== Total College Balance ===");
-                                // TODO: Calculate total college balance
-                                //totalCollegeBalance(newCollege);
+                                totalCollegeBalance(newCollege);
                                 break;
                             case 4:
                                 System.out.println("\n=== Exiting College Finance Menu ===");
@@ -151,8 +146,27 @@ public class MainClass {
         }while(selectMainMenu != 4);
     }
 
+    /*
+      This method is used to calculate the colleges financial balance
+     */
+    private static void totalCollegeBalance(College newCollege) {
+        System.out.println("=== College Financial Balance ===");
+        System.out.println("===Balance: (-Deficit/+Credit) £ " + newCollege.calculateTotalMoneyLeft() + "\n");
+    }
+
+    /*
+      This method is used to calculate the colleges total income
+     */
+    private static void totalCollegeIncome(College newCollege) {
+        System.out.println("=== Total College Income ===");
+        System.out.println("Total Income: £ " + newCollege.calculateTotalMoneyEarned() + "\n");
+    }
+
+    /*
+      This method is used to calculate the colleges total expenses
+     */
     private static void totalCollegeExpenses(College newCollege) {
-        newCollege.printListOfTeachers();
+        System.out.println("=== Total College Expenses ===");
         System.out.println("Total Expenses: £ " + newCollege.calculateTotalMoneySpent() + "\n");
     }
 
