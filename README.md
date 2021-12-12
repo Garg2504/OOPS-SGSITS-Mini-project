@@ -1,7 +1,7 @@
-# Java Project: College Finance Management System
-Work in progress ... 
+# College Finance Management System
+This project is a simple financial system for a college.
 
-Once Completed!
+Completed!
 
 👇 👇 👇
 
