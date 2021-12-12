@@ -116,6 +116,7 @@ public class College {
 
     /**
      * Deletes a teacher from the list of teachers
+     * @param teacherID: The teacher ID
      */
     ArrayList<Teacher> deletedTeacherList = new ArrayList<>();
 
