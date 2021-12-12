@@ -10,7 +10,22 @@ The system also allows the user to view the total amount of money earned
 by the college, the total amount of money spent by the college and the balance available
 to the college.
 
-### Here is a screenshot of the application:
+## Installing:
+
+1. Clone the repo
+
+```
+https://github.com/AAdewunmi/CollegeFinanceManagementSystem.git
+```
+
+2. Open Project Folder
+
+
+3. Explore
+
+Enjoy 😎
+
+### Here are screenshot's of the application:
 #### 1. Main Menu / Teacher Finance Menu
 
 <img width="331" alt="Screenshot 2021-12-12 at 15 37 27" src="https://user-images.githubusercontent.com/15172744/145718868-af1d9571-b169-4983-a7d9-2d26ebbde872.png">
@@ -30,8 +45,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 Future plans:
 1. Implement Test Class
-2. Implement searching and sorting algorithms on the student and teacher lists
-3. Add a JavaFX Graphical User Interface (GUI) 
-4. Add a SQL Database
+2. Add a JavaFX Graphical User Interface (GUI) 
+3. Add a SQL Database
 
 
