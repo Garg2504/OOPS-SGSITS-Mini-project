@@ -255,14 +255,20 @@ public class College {
                 tuitionFeesPaid = student.getTuitionPaid();
                 amountOutstanding = student.payTuitionFee();
                 feesPaidToDate = student.totalTuitionPaid();
-                System.out.println("=== SUCCESS ===\nYou have successfully paid the tuition fees!");
-                System.out.println("Tuition Fees: £ " + tuitionFees);
-                System.out.println("Tuition Fees Paid: £ " + tuitionFeesPaid);
-                System.out.println("Amount Outstanding: £ " + amountOutstanding);
-                System.out.println();
-                System.out.println("Fees Paid To-date: £ " + feesPaidToDate);
-                System.out.println();
-                return true;
+                if(student.getAmount() < student.getTuitionPaid()){
+                    System.out.println("=== ERROR ===\nYou have paid more than the required tuition fees!");
+                    System.out.println("Full Tuition Fees: £ " + student.getTuitionFee());
+                    System.out.println("You Paid: £ " + student.getTuitionPaid());
+                }else{
+                    System.out.println("=== SUCCESS ===\nYou have successfully paid the tuition fees!");
+                    System.out.println("Tuition Fees: £ " + tuitionFees);
+                    System.out.println("Tuition Fees Paid: £ " + tuitionFeesPaid);
+                    System.out.println("Amount Outstanding: £ " + amountOutstanding);
+                    System.out.println();
+                    System.out.println("Fees Paid To-date: £ " + feesPaidToDate);
+                    System.out.println();
+                    return true;
+                }
             }else{
                 System.out.println("Student not found");
             }
