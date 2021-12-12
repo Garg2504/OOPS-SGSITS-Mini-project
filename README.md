@@ -12,7 +12,7 @@ to the college.
 
 Here is a screenshot of the application:
 
-    ![Screen shot of the application](https://i.imgur.com/QQQQQQQ.png)
+    ![Screen shot of the application](https://drive.google.com/file/d/1ALGN6HTPp8_-z7vYrTDtHRZ03BxtKsb6/view?usp=sharing)
 
 ### Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
