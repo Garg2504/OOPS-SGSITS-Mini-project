@@ -25,6 +25,9 @@ https://github.com/AAdewunmi/CollegeFinanceManagementSystem.git
 
 Enjoy 😎
 
+PS: You can have a look at this project's javadoc by running index.html,
+located in the following folder: JavaDocs/index.html
+
 ### Here are screenshot's of the application:
 #### 1. Main Menu / Teacher Finance Menu
 
