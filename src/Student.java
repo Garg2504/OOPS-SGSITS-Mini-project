@@ -111,13 +111,7 @@ class Student {
      * @return: Student's outstanding fees
      */
     public double payTuitionFee(){
-        if (amount < tuitionPaid) {
-            System.out.println("=== ERROR ===\nYou have paid more than the required tuition fees!");
-            System.out.println("Full Tuition Fees: £ " + tuitionFee);
-        }else {
-            this.amount -= tuitionPaid;
-            System.out.println("=== SUCCESS ===\nYou have successfully paid the tuition fees!");
-        }
+        this.amount -= tuitionPaid;
         return amount;
     }
 

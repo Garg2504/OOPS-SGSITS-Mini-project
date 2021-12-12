@@ -158,7 +158,7 @@ public class College {
      */
     public double calculateTotalMoneyEarned() {
         for (Student student : students) {
-            this.totalMoneyEarned = student.getTotalTuitionPaid();
+            this.totalMoneyEarned += student.getTotalTuitionPaid();
             System.out.println(student.toString2());
         }
         return totalMoneyEarned;
@@ -237,25 +237,38 @@ public class College {
 
     /**
      * Pay student's tuition fees
-     * @param studentid: The student ID
+     * @param studentID: The student ID
      *        courseCode: The course code
      *        tuitionPayment : The tuition fees payment
      * @return: The new tuition
      */
-    public void payStudentTuitionFees(String studentid, String courseid, double tuitionPayment) {
+
+    public boolean payStudentTuitionFees(String studentID, String courseCode, double tuitionPayment){
+        double tuitionFees;
+        double tuitionFeesPaid;
+        double amountOutstanding;
+        double feesPaidToDate;
         for (Student student : students) {
-            if (findStudent(studentid, courseid)) {
-                System.out.println("Tuition Fees: £ " + student.getAmount());
-                student.setTuitionPaid(tuitionPayment);
-                System.out.println("Tuition Fees Paid: £ " + student.getTuitionPaid());
-                System.out.println("Amount Outstanding: £ " + student.payTuitionFee());
+            if ((student.getId().equals(studentID)) && (student.getCourseCode().equals(courseCode))) {
+                tuitionFees = student.getAmount();
+                student.setTuitionPaid(student.getTuitionPaid() + tuitionPayment);
+                tuitionFeesPaid = student.getTuitionPaid();
+                amountOutstanding = student.payTuitionFee();
+                feesPaidToDate = student.totalTuitionPaid();
+                System.out.println("=== SUCCESS ===\nYou have successfully paid the tuition fees!");
+                System.out.println("Tuition Fees: £ " + tuitionFees);
+                System.out.println("Tuition Fees Paid: £ " + tuitionFeesPaid);
+                System.out.println("Amount Outstanding: £ " + amountOutstanding);
                 System.out.println();
-                System.out.println("Fees Paid To-date: £ " + student.totalTuitionPaid());
+                System.out.println("Fees Paid To-date: £ " + feesPaidToDate);
                 System.out.println();
-            } else {
+                return true;
+            }else{
                 System.out.println("Student not found");
             }
         }
+        return false;
     }
+
 }
 

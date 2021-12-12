@@ -187,8 +187,9 @@ public class MainClass {
             if((tuitionFees > 0) && (tuitionFees < 1000000)){
                 newCollege.payStudentTuitionFees(studentID, courseCode, tuitionFees);
             }else{
-                System.out.println("\nInvalid tuition fee payment!\n" +
-                        "Tuition fee payment must be between £1.00 and £100000.00.");
+                System.out.println("*** INVALID INPUT ***\nInvalid tuition fee payment!\n" +
+                        "Tuition fee payment must be between £1.00 and £100000.00.\n" +
+                        "Transaction Unsuccessful!\n");
             }
             System.out.println("Do you want to pay more tuition fees? (y/n)");
             y = scanner.next().charAt(0);
@@ -277,7 +278,7 @@ public class MainClass {
                 Student newStudent = new Student(studentId, studentName, courseName, courseCode, courseFee);
                 newCollege.addStudent(newStudent);
         }else {
-            System.out.println("*** INVALID INPUT ***" );
+            System.out.println("*** INVALID INPUT ***");
             System.out.println("Student id already exists or Course code is invalid or Course Fee is less than £1.");
             System.out.println("(1) Duplicate student id is not allowed,\n" +
                     "(2) Course code must be unique,\n" +
